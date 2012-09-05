@@ -1,0 +1,205 @@
+<?php
+
+/**
+ * Copyright 2012 Ink Labs, LLC
+ *
+ * v.1.0.0
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License. You may obtain
+ * a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ */
+
+class Zenimg {
+	
+	public static $render_location = 'http://i.zenimg.com';
+	public static $pan_angles = array(
+		0,
+		15,
+		30,
+		45,
+		60,
+		75,
+		90,
+		105,
+		120,
+		135,
+		150,
+		165,
+		180,
+		-165,
+		-150,
+		-135,
+		-120,
+		-105,
+		-90,
+		-75,
+		-60,
+		-45,
+		-30,
+		-15,
+	);
+
+	public static function get_img_url($params, $prefer_cached_urlc = FALSE) {
+
+		$image_code = Arr::get($params, 'image_code');
+		$url = Arr::get($params, 'url');
+
+		$style = Arr::get($params, 'style');
+		$cg_style = Arr::get($params, 'cg_style');
+		$cg_edge_color = Arr::get($params, 'cg_edge_color');
+		$cg_depth = Arr::get($params, 'cg_depth');
+		$al_edge_depth = Arr::get($params, 'al_edge_depth');
+		$al_rounded = Arr::get($params, 'al_rounded');
+		$ac_edge_depth = Arr::get($params, 'ac_edge_depth');
+		$frame_code = Arr::get($params, 'frame_code');
+		$wood_style = Arr::get($params, 'wood_style');
+		$background = Arr::get($params, 'background');
+		$background_texture = Arr::get($params, 'background_texture');
+		$background_texture_color = Arr::get($params, 'background_texture_color');
+		$shadow = Arr::get($params, 'shadow');
+		$panoramic = Arr::get($params, 'panoramic');
+		$pan = Arr::get($params, 'pan');
+		$tilt = Arr::get($params, 'tilt');
+		$roll = Arr::get($params, 'roll');
+		$actual_size = Arr::get($params, 'actual_size');
+		$size = Arr::get($params, 'size');
+		$format = Arr::get($params, 'format', 'jpg');
+
+		$file_options = array();
+		
+		$file_options[] = $style;
+
+		if ($style == 'CG' OR $style == 'CG2') {
+			if ($cg_style == 'IW') {
+				$file_options[] = $cg_style;
+			}
+
+			if ($cg_edge_color !== NULL) {
+				$file_options[] = 'EC' . $cg_edge_color;
+			}
+		
+			if ($cg_depth !== NULL) {
+				$file_options[] = 'D' . $cg_depth;
+			}
+		} elseif ($style == 'AL') {
+			if ($al_edge_depth !== NULL) {
+				$file_options[] = 'ED' . $al_edge_depth;
+			}
+
+			if ($al_rounded !== NULL) {
+				$file_options[] = 'RD' . $al_rounded;
+			}
+		} elseif ($style == 'AC') {
+			if ($ac_edge_depth !== NULL) {
+				$file_options[] = 'ED' . $ac_edge_depth;
+			}
+		}
+		
+		if ($frame_code !== NULL) {
+			$file_options[] = 'F' . $frame_code;
+		}
+		
+		if ($wood_style !== NULL) {
+			$file_options[] = 'W' . $wood_style;
+		}
+
+		if ($background !== NULL) {
+			$file_options[] = 'BG' . $background;
+		}
+
+		if ($background_texture !== NULL) {
+			$file_options[] = 'BT' . $background_texture;
+		}
+
+		if ($background_texture_color !== NULL) {
+			$file_options[] = 'BTC' . $background_texture_color;
+		}
+
+		if ($shadow === TRUE) {
+			$file_options[] = 'SHD';
+		}
+
+		if ($panoramic === TRUE) {
+			$file_options[] = 'PAN';
+		} else {
+			if ($pan !== NULL) {
+				$file_options[] = 'P' . $pan;
+			}
+
+			if ($tilt !== NULL) {
+				$file_options[] = 'T' . $tilt;
+			}
+
+			if ($roll !== NULL) {
+				$file_options[] = 'R' . $roll;
+			}
+		}
+
+		if ($actual_size !== NULL) {
+			$file_options[] = 'A' . strtoupper($actual_size);
+		}
+
+		if ($size !== NULL) {
+			$file_options[] = strtoupper($size);
+		}
+		
+		$file_options = implode('_', $file_options) . '.' . $format;
+
+		if ($image_code !== NULL) {
+			return self::$render_location . '/v1/' . $image_code . '_' . $file_options;
+		} elseif ($url !== NULL) {
+			$clean_url = urlencode($url);
+
+			if ($prefer_cached_urlc) {
+				$image_code = self::get_img_code($clean_url);
+				
+				if ($image_code !== NULL) {
+					return self::$render_location . '/v1/' . $image_code . '_' . $file_options;
+				}
+			}
+			
+			return self::$render_location . '/v1/url/' . $file_options . '?url=' . $clean_url;
+		}
+
+		return '';
+	}
+
+	public static function get_img_code($clean_url) {
+		$token = Profiler::start('zenimg', 'get_img_code');
+
+		$cache_key = sha1($clean_url);
+		$cache_lifetime = 4294967295;
+		$data = Cache::instance()->get($cache_key);
+
+		if ($data !== NULL) {
+			Profiler::stop($token);
+			return $data;
+		}
+
+		$image_url = self::$render_location . '/v1/urlc/' . $clean_url;
+		$data = Request::factory($image_url)->execute()->body();
+
+		if ($data !== '!!') {
+			Cache::instance()->set(
+				$cache_key,
+				$data,
+				$cache_lifetime
+			);
+		} else {
+			$data = NULL;
+		}
+
+		Profiler::stop($token);
+
+		return $data;
+	}
+}
