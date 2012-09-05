@@ -63,7 +63,6 @@ class Zenimg
 		background_texture = params[:background_texture]
 		background_texture_color = params[:background_texture_color]
 		shadow = params[:shadow]
-		panoramic = params[:panoramic]
 		pan = params[:pan]
 		tilt = params[:tilt]
 		roll = params[:roll]
