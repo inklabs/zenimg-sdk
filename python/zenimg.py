@@ -81,7 +81,7 @@ def get_img_url(params):
 	if background_texture_color:
 		file_options.append('BTC' + background_texture_color)
 
-	if shadow:
+	if shadow == True:
 		file_options.append('SHD')
 
 	if pan:
