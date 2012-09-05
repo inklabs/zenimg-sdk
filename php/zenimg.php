@@ -18,6 +18,15 @@
  * under the License.
  */
 
+if ( ! class_exists('Arr')) {
+	Class Arr {
+		public static function get($array, $key, $default = NULL)
+		{
+		    return isset($array[$key]) ? $array[$key] : $default;
+		}
+	}
+}
+
 class Zenimg {
 	
 	public static $render_location = 'http://i.zenimg.com';
