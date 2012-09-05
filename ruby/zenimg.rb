@@ -6,13 +6,13 @@
 #  not use this file except in compliance with the License. You may obtain
 #  a copy of the License at
 # 
-#      http://www.apache.org/licenses/LICENSE-2.0
+#  http://www.apache.org/licenses/LICENSE-2.0
 # 
 #  Unless required by applicable law or agreed to in writing, software
-#  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-#  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-#  License for the specific language governing permissions and limitations
-#  under the License.
+#	 distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+#	 WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+#	 License for the specific language governing permissions and limitations
+#	 under the License.
 
 require 'uri'
 
@@ -47,113 +47,113 @@ class Zenimg
 	]
 
 	def self.get_img_url(params)
-    image_code = params[:image_code]
-    url = params[:url]
+		image_code = params[:image_code]
+		url = params[:url]
 
-    style = params[:style]
-    cg_style = params[:cg_style]
-    cg_edge_color = params[:cg_edge_color]
-    cg_depth = params[:cg_depth]
-    al_edge_depth = params[:al_edge_depth]
-    al_rounded = params[:al_rounded]
-    ac_edge_depth = params[:ac_edge_depth]
-    frame_code = params[:frame_code]
-    wood_style = params[:wood_style]
-    background = params[:background]
-    background_texture = params[:background_texture]
-    background_texture_color = params[:background_texture_color]
-    shadow = params[:shadow]
-    panoramic = params[:panoramic]
-    pan = params[:pan]
-    tilt = params[:tilt]
-    roll = params[:roll]
-    actual_size = params[:actual_size]
-    size = params[:size]
-    format = params[:format] || 'jpg'
+		style = params[:style]
+		cg_style = params[:cg_style]
+		cg_edge_color = params[:cg_edge_color]
+		cg_depth = params[:cg_depth]
+		al_edge_depth = params[:al_edge_depth]
+		al_rounded = params[:al_rounded]
+		ac_edge_depth = params[:ac_edge_depth]
+		frame_code = params[:frame_code]
+		wood_style = params[:wood_style]
+		background = params[:background]
+		background_texture = params[:background_texture]
+		background_texture_color = params[:background_texture_color]
+		shadow = params[:shadow]
+		panoramic = params[:panoramic]
+		pan = params[:pan]
+		tilt = params[:tilt]
+		roll = params[:roll]
+		actual_size = params[:actual_size]
+		size = params[:size]
+		format = params[:format] || 'jpg'
 
-    file_options = [];
+		file_options = [];
 
-    file_options << style
+		file_options << style
 
-    if style == 'CG' || style == 'CG2'
-      if cg_style == 'IW'
-        file_options << cg_style
-      end
+		if style == 'CG' || style == 'CG2'
+			if cg_style == 'IW'
+				file_options << cg_style
+			end
 
-      if cg_edge_color != nil
-        file_options << 'EC' + cg_edge_color
-      end
+			if cg_edge_color != nil
+				file_options << 'EC' + cg_edge_color
+			end
 
-      if cg_depth != nil
-        file_options << 'D' + cg_depth.to_s
-      end
-    elsif style == 'AL'
-      if al_edge_depth != nil
-        file_options << 'ED' + al_edge_depth.to_s
-      end
+			if cg_depth != nil
+				file_options << 'D' + cg_depth.to_s
+			end
+		elsif style == 'AL'
+			if al_edge_depth != nil
+				file_options << 'ED' + al_edge_depth.to_s
+			end
 
-      if al_rounded != nil
-        file_options << 'RD' + al_rounded.to_s
-      end
-    elsif style == 'AC'
-      if ac_edge_depth != nil
-        file_options << 'ED' + ac_edge_depth.to_s
-      end
-    end
+			if al_rounded != nil
+				file_options << 'RD' + al_rounded.to_s
+			end
+		elsif style == 'AC'
+			if ac_edge_depth != nil
+				file_options << 'ED' + ac_edge_depth.to_s
+			end
+		end
 
-    if frame_code != nil
-      file_options << 'F' + frame_code
-    end
+		if frame_code != nil
+			file_options << 'F' + frame_code
+		end
 
-    if wood_style != nil
-      file_options << 'W' + wood_style
-    end
+		if wood_style != nil
+			file_options << 'W' + wood_style
+		end
 
-    if background != nil
-      file_options << 'BG' + background
-    end
+		if background != nil
+			file_options << 'BG' + background
+		end
 
-    if background_texture != nil
-      file_options << 'BT' + background_texture
-    end
+		if background_texture != nil
+			file_options << 'BT' + background_texture
+		end
 
-    if background_texture_color != nil
-      file_options << 'BTC' + background_texture_color
-    end
+		if background_texture_color != nil
+			file_options << 'BTC' + background_texture_color
+		end
 
-    if shadow == true
-      file_options << 'SHD'
-    end
+		if shadow == true
+			file_options << 'SHD'
+		end
 
-    if pan != nil
-      file_options << 'P' + pan.to_s
-    end
-  
-    if tilt != nil
-      file_options << 'T' + tilt.to_s
-    end
-  
-    if roll != nil
-      file_options << 'R' + roll.to_s
-    end
+		if pan != nil
+			file_options << 'P' + pan.to_s
+		end
+	
+		if tilt != nil
+			file_options << 'T' + tilt.to_s
+		end
+	
+		if roll != nil
+			file_options << 'R' + roll.to_s
+		end
 
-    if actual_size != nil
-      file_options << 'A' + actual_size.upcase
-    end
+		if actual_size != nil
+			file_options << 'A' + actual_size.upcase
+		end
 
-    if size != nil
-      file_options << size.upcase
-    end
+		if size != nil
+			file_options << size.upcase
+		end
 
-    file_options = file_options.join('_') + '.' + format
+		file_options = file_options.join('_') + '.' + format
 
-    if image_code != nil
-      return @@render_location + '/v1/' + image_code + '_' + file_options
-    elsif url != nil
-      clean_url = URI::encode(url);
-      return @@render_location + '/v1/url/' + file_options + '?url=' + clean_url;
-    end
-    
-    return ''
+		if image_code != nil
+			return @@render_location + '/v1/' + image_code + '_' + file_options
+		elsif url != nil
+			clean_url = URI::encode(url);
+			return @@render_location + '/v1/url/' + file_options + '?url=' + clean_url;
+		end
+		
+		return ''
 	end
 end
