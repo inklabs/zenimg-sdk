@@ -82,20 +82,16 @@ Zenimg.get_image_url = function(image) {
 		file_options.push('SHD');
 	}
 
-	if (typeof image.panoramic !== 'undefined' && image.panoramic === true) {
-		file_options.push('PAN');
-	} else {
-		if (typeof image.pan !== 'undefined' && image.pan !== null) {
-			file_options.push('P' + image.pan);
-		}
+	if (typeof image.pan !== 'undefined' && image.pan !== null) {
+		file_options.push('P' + image.pan);
+	}
 
-		if (typeof image.tilt !== 'undefined' && image.tilt !== null) {
-			file_options.push('T' + image.tilt);
-		}
+	if (typeof image.tilt !== 'undefined' && image.tilt !== null) {
+		file_options.push('T' + image.tilt);
+	}
 
-		if (typeof image.roll !== 'undefined' && image.roll !== null) {
-			file_options.push('R' + image.roll);
-		}
+	if (typeof image.roll !== 'undefined' && image.roll !== null) {
+		file_options.push('R' + image.roll);
 	}
 
 	if (typeof image.actual_size !== 'undefined' && image.actual_size !== null) {

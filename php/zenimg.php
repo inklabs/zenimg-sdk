@@ -128,20 +128,16 @@ class Zenimg {
 			$file_options[] = 'SHD';
 		}
 
-		if ($panoramic === TRUE) {
-			$file_options[] = 'PAN';
-		} else {
-			if ($pan !== NULL) {
-				$file_options[] = 'P' . $pan;
-			}
+		if ($pan !== NULL) {
+			$file_options[] = 'P' . $pan;
+		}
 
-			if ($tilt !== NULL) {
-				$file_options[] = 'T' . $tilt;
-			}
+		if ($tilt !== NULL) {
+			$file_options[] = 'T' . $tilt;
+		}
 
-			if ($roll !== NULL) {
-				$file_options[] = 'R' . $roll;
-			}
+		if ($roll !== NULL) {
+			$file_options[] = 'R' . $roll;
 		}
 
 		if ($actual_size !== NULL) {
