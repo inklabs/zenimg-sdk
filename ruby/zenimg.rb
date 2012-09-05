@@ -14,7 +14,7 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
-require 'uri'
+require 'cgi'
 
 class Zenimg
 	
@@ -150,7 +150,7 @@ class Zenimg
 		if image_code != nil
 			return @@render_location + '/v1/' + image_code + '_' + file_options
 		elsif url != nil
-			clean_url = URI::encode(url);
+			clean_url = CGI.escape(url);
 			return @@render_location + '/v1/url/' + file_options + '?url=' + clean_url;
 		end
 		
