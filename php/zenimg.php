@@ -75,7 +75,6 @@ class Zenimg {
 		$background_texture = Arr::get($params, 'background_texture');
 		$background_texture_color = Arr::get($params, 'background_texture_color');
 		$shadow = Arr::get($params, 'shadow');
-		$panoramic = Arr::get($params, 'panoramic');
 		$pan = Arr::get($params, 'pan');
 		$tilt = Arr::get($params, 'tilt');
 		$roll = Arr::get($params, 'roll');

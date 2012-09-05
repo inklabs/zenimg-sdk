@@ -33,7 +33,6 @@ def get_img_url(params):
 	background_texture = params.get('background_texture')
 	background_texture_color = params.get('background_texture_color')
 	shadow = params.get('shadow')
-	panoramic = params.get('panoramic')
 	pan = params.get('pan')
 	tilt = params.get('tilt')
 	roll = params.get('roll')
