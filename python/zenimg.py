@@ -49,61 +49,61 @@ def get_img_url(params):
 		if cg_style == 'IW':
 			file_options.append(cg_style)
 	
-		if cg_edge_color is not None:
+		if cg_edge_color:
 			file_options.append('EC' + cg_edge_color)
 
-		if cg_depth is not None:
+		if cg_depth:
 			file_options.append('D' + str(cg_depth))
 
 	elif style == 'AL':
-		if al_edge_depth is not None:
+		if al_edge_depth:
 			file_options.append('ED' + str(al_edge_depth))
 
-		if al_rounded is not None:
+		if al_rounded:
 			file_options.append('RD' + str(al_rounded))
 
 	elif style == 'AC':
-		if ac_edge_depth is not None:
+		if ac_edge_depth:
 			file_options.append('ED' + str(ac_edge_depth))
 
-	if frame_code is not None:
+	if frame_code:
 		file_options.append('F' + frame_code)
 
-	if wood_style is not None:
+	if wood_style:
 		file_options.append('W' + wood_style)
 
-	if background is not None:
+	if background:
 		file_options.append('BG' + background)
 
-	if background_texture is not None:
+	if background_texture:
 		file_options.append('BT' + background_texture)
 
-	if background_texture_color is not None:
+	if background_texture_color:
 		file_options.append('BTC' + background_texture_color)
 
 	if shadow == True:
 		file_options.append('SHD')
 
-	if pan is not None:
+	if pan:
 		file_options.append('P' + str(pan))
 
-	if tilt is not None:
+	if tilt:
 		file_options.append('T' + str(tilt))
 		
-	if roll is not None:
+	if roll:
 		file_options.append('R' + str(roll))
 
-	if actual_size is not None:
+	if actual_size:
 		file_options.append('A' + actual_size.upper())
 
-	if size is not None:
+	if size:
 		file_options.append(size.upper())
 
 	file_options = '_'.join(file_options) + '.' + format
 
-	if image_code is not None:
+	if image_code:
 		return __render_location__ + '/v1/' + image_code + '_' + file_options
-	elif url is not None:
+	elif url:
 		clean_url = urllib.quote_plus(url);
 		return __render_location__ + '/v1/url/' + file_options + '?url=' + clean_url;
 
