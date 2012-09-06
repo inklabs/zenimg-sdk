@@ -43,6 +43,6 @@ echo Zenimg::get_img_url(array(
 	'tilt' => 25,
 	'roll' => 25,
 	'actual_size' => "24x24",
-	'size' => '200X200',
+	'size' => '200x200',
 	'format' => 'jpg',
 )) . "\n";

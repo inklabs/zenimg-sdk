@@ -49,7 +49,6 @@ class Zenimg
 	def self.get_img_url(params)
 		image_code = params[:image_code]
 		url = params[:url]
-
 		style = params[:style]
 		cg_style = params[:cg_style]
 		cg_edge_color = params[:cg_edge_color]

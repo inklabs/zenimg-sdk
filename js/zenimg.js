@@ -1,5 +1,5 @@
 /*
- * zenimg.js v1.0.0
+ * zenimg.js v1.0.1
  *
  * Copyright 2012 Ink Labs, LLC
  *
@@ -18,98 +18,121 @@
 
 var Zenimg = Zenimg || {};
 
-Zenimg.get_image_url = function(image) {
+Zenimg.get_img_url = function(params) {
 	var render_location = 'http://i.zenimg.com';
+
+	var image_code = params.image_code || null;
+	var url = params.url || null;
+	var style = params.style || null;
+	var cg_style = params.cg_style || null;
+	var cg_edge_color = params.cg_edge_color || null;
+	var cg_depth = params.cg_depth || null;
+	var al_edge_depth = params.al_edge_depth || null;
+	var al_rounded = params.al_rounded || null;
+	var ac_edge_depth = params.ac_edge_depth || null;
+	var frame_code = params.frame_code || null;
+	var wood_style = params.wood_style || null;
+	var background = params.background || null;
+	var background_texture = params.background_texture || null;
+	var background_texture_color = params.background_texture_color || null;
+	var shadow = params.shadow || null;
+	var pan = params.pan || null;
+	var tilt = params.tilt || null;
+	var roll = params.roll || null;
+	var actual_size = params.actual_size || null;
+	var size = params.size || null;
+	var format = params.format || 'jpg'
+
 	var file_options = new Array();
 
-	if (typeof image.style === undefined) {
+	if (style == null) {
 		throw 'Style is required';
 	}
-
-	if (typeof image.format === undefined) {
+	
+	if (format == null) {
 		throw 'Format is required';
 	}
 
-	file_options.push(image.style);
+	file_options.push(style);
 
-	if (image.style == 'CG') {
-		if (typeof image.cg_style !== 'undefined' && image.cg_style == 'IW') {
-			file_options.push(image.cg_style);
+	if (style == 'CG') {
+		if (cg_style == 'IW') {
+			file_options.push(cg_style);
 		}
-
-		if (typeof image.cg_edge_color !== 'undefined' && image.cg_edge_color !== null && image.cg_edge_color !== '') {
-			file_options.push('EC' + image.cg_edge_color);
+	
+		if (cg_edge_color != null) {
+			file_options.push('EC' + cg_edge_color);
 		}
-
-		if (typeof image.cg_depth !== 'undefined' && image.cg_depth !== null) {
-			file_options.push('D' + image.cg_depth);
+	
+		if (cg_depth != null) {
+			file_options.push('D' + cg_depth);
 		}
-	} else if (image.style == 'AL') {
-		if (typeof image.al_edge_depth !== 'undefined' && image.al_edge_depth !== null) {
-			file_options.push('ED' + image.al_edge_depth);
+	} else if (style == 'AL') {
+		if (al_edge_depth != null) {
+			file_options.push('ED' + al_edge_depth);
 		}
-
-		if (typeof image.al_rounded !== 'undefined' && image.al_rounded !== null) {
-			file_options.push('RD' + image.al_rounded);
+	
+		if (al_rounded != null) {
+			file_options.push('RD' + al_rounded);
 		}
-	} else if (image.style == 'AC') {
-		if (typeof image.ac_edge_depth !== 'undefined' && image.ac_edge_depth !== null) {
-			file_options.push('ED' + image.ac_edge_depth);
+	} else if (style == 'AC') {
+		if (ac_edge_depth != null) {
+			file_options.push('ED' + ac_edge_depth);
 		}
 	}
 
-	if (typeof image.frame_code !== 'undefined' && image.frame_code !== null) {
-		file_options.push('F' + image.frame_code);
+	if (frame_code != null) {
+		file_options.push('F' + frame_code);
 	}
-
-	if (typeof image.wood_style !== 'undefined' && image.wood_style !== null) {
-		file_options.push('W' + image.wood_style);
+	
+	if (wood_style != null) {
+		file_options.push('W' + wood_style);
 	}
-
-	if (typeof image.background !== 'undefined' && image.background !== null) {
-		file_options.push('BG' + image.background);
+	
+	if (background != null) {
+		file_options.push('BG' + background);
 	}
-
-	if (typeof image.background_texture !== 'undefined' && image.background_texture !== null) {
-		file_options.push('BT' + image.background_texture);
+	
+	if (background_texture != null) {
+		file_options.push('BT' + background_texture);
 	}
-
-	if (typeof image.background_texture_color !== 'undefined' && image.background_texture_color !== null) {
-		file_options.push('BTC' + image.background_texture_color);
+	
+	if (background_texture_color != null) {
+		file_options.push('BTC' + background_texture_color);
 	}
-
-	if (image.shadow === true) {
+	
+	if (shadow == true) {
 		file_options.push('SHD');
 	}
 
-	if (typeof image.pan !== 'undefined' && image.pan !== null) {
-		file_options.push('P' + image.pan);
+	if (pan != null) {
+		file_options.push('P' + pan);
+	}
+	
+	if (tilt != null) {
+		file_options.push('T' + tilt);
+	}
+	
+	if (roll != null) {
+		file_options.push('R' + roll);
 	}
 
-	if (typeof image.tilt !== 'undefined' && image.tilt !== null) {
-		file_options.push('T' + image.tilt);
+	if (actual_size != null) {
+		file_options.push('A' + actual_size.toUpperCase());
 	}
-
-	if (typeof image.roll !== 'undefined' && image.roll !== null) {
-		file_options.push('R' + image.roll);
-	}
-
-	if (typeof image.actual_size !== 'undefined' && image.actual_size !== null) {
-		file_options.push('A' + image.actual_size);
-	}
-
-	if (typeof image.size !== 'undefined' && image.size !== null) {
-		file_options.push(image.size);
+	
+	if (size != null) {
+		file_options.push(size.toUpperCase());
 	}	
 
 	// console.log(file_options);
 
-	file_options = file_options.join('_') + '.' + image.format;
+	file_options = file_options.join('_') + '.' + format;
 
-	if (typeof image.image_code !== 'undefined') {
-		return render_location + '/v1/' + image.image_code + '_' + file_options;
-	} else if (typeof image.url !== 'undefined') {
-		var clean_url = encodeURIComponent(image.url);
+	if (image_code != null) {
+		return render_location + '/v1/' + image_code + '_' + file_options;
+	} else if (url != null) {
+		var clean_url = encodeURIComponent(url);
 		return render_location + '/v1/url/' + file_options + '?url=' + clean_url;
 	}
 };

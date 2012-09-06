@@ -34,7 +34,6 @@ puts Zenimg::get_img_url({
 	:format => 'jpg',
 })
 
-
 puts Zenimg::get_img_url({
 	:url => 'http://imgur.com/gallery/m6fak',
 	:style => 'CG',
@@ -43,6 +42,6 @@ puts Zenimg::get_img_url({
 	:tilt => 25,
 	:roll => 25,
 	:actual_size => "24x24",
-	:size => '200X200',
+	:size => '200x200',
 	:format => 'jpg',
 })
