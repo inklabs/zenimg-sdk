@@ -1,5 +1,5 @@
 /*
- * zenimg.js v1.0.1
+ * zenimg.js v1.0.2
  *
  * Copyright 2012 Ink Labs, LLC
  *
@@ -19,8 +19,7 @@
 var Zenimg = Zenimg || {};
 
 Zenimg.get_img_url = function(params) {
-	var render_location = 'http://i.zenimg.com';
-
+	var render_location = params.render_location || 'http://i.zenimg.com';
 	var image_code = params.image_code || null;
 	var url = params.url || null;
 	var style = params.style || null;
