@@ -3,7 +3,7 @@
 check_status() {
 	if [ $? -ne 0 ]; then
 		echo
-		echo "$RES"
+		echo "$RES" | grep -v '[OK]'
 	else
 		printf "\t[\e[01;32mOK\e[00m]"
 	fi
