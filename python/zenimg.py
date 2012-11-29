@@ -1,4 +1,6 @@
 #  Copyright 2012 Ink Labs, LLC
+#
+#  v.1.0.3
 # 
 #  Licensed under the Apache License, Version 2.0 (the "License"); you may
 #  not use this file except in compliance with the License. You may obtain
@@ -48,61 +50,61 @@ def get_img_url(params):
 		if cg_style == 'IW':
 			file_options.append(cg_style)
 	
-		if cg_edge_color:
-			file_options.append('EC' + cg_edge_color)
+		if cg_edge_color is not None:
+			file_options.append('EC' + cg_edge_color.upper())
 
-		if cg_depth:
+		if cg_depth is not None:
 			file_options.append('D' + str(cg_depth))
 
 	elif style == 'AL':
-		if al_edge_depth:
+		if al_edge_depth is not None:
 			file_options.append('ED' + str(al_edge_depth))
 
-		if al_rounded:
+		if al_rounded is not None:
 			file_options.append('RD' + str(al_rounded))
 
 	elif style == 'AC':
-		if ac_edge_depth:
+		if ac_edge_depth is not None:
 			file_options.append('ED' + str(ac_edge_depth))
 
-	if frame_code:
+	if frame_code is not None:
 		file_options.append('F' + frame_code)
 
-	if wood_style:
+	if wood_style is not None:
 		file_options.append('W' + wood_style)
 
-	if background:
-		file_options.append('BG' + background)
+	if background is not None:
+		file_options.append('BG' + str(background))
 
-	if background_texture:
-		file_options.append('BT' + background_texture)
+	if background_texture is not None:
+		file_options.append('BT' + str(background_texture))
 
-	if background_texture_color:
-		file_options.append('BTC' + background_texture_color)
+	if background_texture_color is not None:
+		file_options.append('BTC' + background_texture_color.upper())
 
 	if shadow == True:
 		file_options.append('SHD')
 
-	if pan:
+	if pan is not None:
 		file_options.append('P' + str(pan))
 
-	if tilt:
+	if tilt is not None:
 		file_options.append('T' + str(tilt))
 		
-	if roll:
+	if roll is not None:
 		file_options.append('R' + str(roll))
 
-	if actual_size:
+	if actual_size is not None:
 		file_options.append('A' + actual_size.upper())
 
-	if size:
+	if size is not None:
 		file_options.append(size.upper())
 
 	file_options = '_'.join(file_options) + '.' + format
 
-	if image_code:
+	if image_code is not None:
 		return __render_location__ + '/v1/' + image_code + '_' + file_options
-	elif url:
+	elif url is not None:
 		clean_url = urllib.quote_plus(url);
 		return __render_location__ + '/v1/url/' + file_options + '?url=' + clean_url;
 

@@ -1,22 +1,22 @@
 <?php
 
-/**
- * Copyright 2012 Ink Labs, LLC
- *
- * v.1.0.0
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License. You may obtain
- * a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations
- * under the License.
- */
+/*
+#  Copyright 2012 Ink Labs, LLC
+#
+#  v.1.0.3
+# 
+#  Licensed under the Apache License, Version 2.0 (the "License"); you may
+#  not use this file except in compliance with the License. You may obtain
+#  a copy of the License at
+# 
+#  http://www.apache.org/licenses/LICENSE-2.0
+# 
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+#  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+#  License for the specific language governing permissions and limitations
+#  under the License.
+*/
 
 if ( ! class_exists('Arr')) {
 	Class Arr {
@@ -92,7 +92,7 @@ class Zenimg {
 			}
 
 			if ($cg_edge_color !== NULL) {
-				$file_options[] = 'EC' . $cg_edge_color;
+				$file_options[] = 'EC' . strtoupper($cg_edge_color);
 			}
 		
 			if ($cg_depth !== NULL) {
@@ -129,7 +129,7 @@ class Zenimg {
 		}
 
 		if ($background_texture_color !== NULL) {
-			$file_options[] = 'BTC' . $background_texture_color;
+			$file_options[] = 'BTC' . strtoupper($background_texture_color);
 		}
 
 		if ($shadow === TRUE) {
@@ -189,7 +189,7 @@ class Zenimg {
 			return $data;
 		}
 
-		$image_url = self::$render_location . '/v1/urlc/' . $clean_url;
+		$image_url = self::$render_location . '/v1/urlc?url=' . $clean_url;
 		$data = Request::factory($image_url)->execute()->body();
 
 		if ($data !== '!!') {

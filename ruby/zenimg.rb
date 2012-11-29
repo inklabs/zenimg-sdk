@@ -1,6 +1,6 @@
 #  Copyright 2012 Ink Labs, LLC
-# 
-#  v.1.0.0
+#
+#  v.1.0.3
 # 
 #  Licensed under the Apache License, Version 2.0 (the "License"); you may
 #  not use this file except in compliance with the License. You may obtain
@@ -47,27 +47,27 @@ class Zenimg
 	]
 
 	def self.get_img_url(params)
-		image_code = params[:image_code]
-		url = params[:url]
-		style = params[:style]
-		cg_style = params[:cg_style]
-		cg_edge_color = params[:cg_edge_color]
-		cg_depth = params[:cg_depth]
-		al_edge_depth = params[:al_edge_depth]
-		al_rounded = params[:al_rounded]
-		ac_edge_depth = params[:ac_edge_depth]
-		frame_code = params[:frame_code]
-		wood_style = params[:wood_style]
-		background = params[:background]
-		background_texture = params[:background_texture]
-		background_texture_color = params[:background_texture_color]
-		shadow = params[:shadow]
-		pan = params[:pan]
-		tilt = params[:tilt]
-		roll = params[:roll]
-		actual_size = params[:actual_size]
-		size = params[:size]
-		format = params[:format] || 'jpg'
+		image_code = params['image_code']
+		url = params['url']
+		style = params['style']
+		cg_style = params['cg_style']
+		cg_edge_color = params['cg_edge_color']
+		cg_depth = params['cg_depth']
+		al_edge_depth = params['al_edge_depth']
+		al_rounded = params['al_rounded']
+		ac_edge_depth = params['ac_edge_depth']
+		frame_code = params['frame_code']
+		wood_style = params['wood_style']
+		background = params['background']
+		background_texture = params['background_texture']
+		background_texture_color = params['background_texture_color']
+		shadow = params['shadow']
+		pan = params['pan']
+		tilt = params['tilt']
+		roll = params['roll']
+		actual_size = params['actual_size']
+		size = params['size']
+		format = params['format'] || 'jpg'
 
 		file_options = [];
 
@@ -79,7 +79,7 @@ class Zenimg
 			end
 
 			if cg_edge_color != nil
-				file_options << 'EC' + cg_edge_color
+				file_options << 'EC' + cg_edge_color.upcase
 			end
 
 			if cg_depth != nil
@@ -108,15 +108,15 @@ class Zenimg
 		end
 
 		if background != nil
-			file_options << 'BG' + background
+			file_options << 'BG' + background.to_s
 		end
 
 		if background_texture != nil
-			file_options << 'BT' + background_texture
+			file_options << 'BT' + background_texture.to_s
 		end
 
 		if background_texture_color != nil
-			file_options << 'BTC' + background_texture_color
+			file_options << 'BTC' + background_texture_color.upcase
 		end
 
 		if shadow == true
