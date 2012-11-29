@@ -46,6 +46,9 @@ def get_img_url(params):
 
 	file_options.append(style)
 
+	if style is None:
+		return ''
+
 	if style == 'CG' or style == 'CG2':
 		if cg_style == 'IW':
 			file_options.append(cg_style)
@@ -66,6 +69,11 @@ def get_img_url(params):
 	elif style == 'AC':
 		if ac_edge_depth is not None:
 			file_options.append('ED' + str(ac_edge_depth))
+
+	elif style == 'WD':
+		pass
+	else:
+	  return ''
 
 	if frame_code is not None:
 		file_options.append('F' + frame_code)
@@ -99,6 +107,8 @@ def get_img_url(params):
 
 	if size is not None:
 		file_options.append(size.upper())
+	else:
+		return ''
 
 	file_options = '_'.join(file_options) + '.' + format
 

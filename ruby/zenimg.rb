@@ -97,6 +97,9 @@ class Zenimg
 			if ac_edge_depth != nil
 				file_options << 'ED' + ac_edge_depth.to_s
 			end
+		elsif style == 'WD'
+		else
+		  return ''
 		end
 
 		if frame_code != nil
@@ -141,6 +144,8 @@ class Zenimg
 
 		if size != nil
 			file_options << size.upcase
+		else
+		  return ''
 		end
 
 		file_options = file_options.join('_') + '.' + format

@@ -24,13 +24,9 @@ Zenimg.get_img_url = function(params) {
 
 	var file_options = new Array();
 
-	if (typeof params.style === 'undefined') {
-		throw 'Style is required';
-	}
-
 	file_options.push(params.style);
 
-	if (params.style == 'CG') {
+	if (params.style == 'CG' || params.style == 'CG2') {
 		if (params.cg_style == 'IW') {
 			file_options.push(params.cg_style);
 		}
@@ -54,6 +50,10 @@ Zenimg.get_img_url = function(params) {
 		if (typeof params.ac_edge_depth !== 'undefined') {
 			file_options.push('ED' + params.ac_edge_depth);
 		}
+	} else if (params.style == 'WD') {
+		
+	} else {
+		return '';
 	}
 
 	if (typeof params.frame_code !== 'undefined') {
@@ -98,7 +98,9 @@ Zenimg.get_img_url = function(params) {
 	
 	if (typeof params.size !== 'undefined') {
 		file_options.push(params.size.toUpperCase());
-	}	
+	} else {
+		return '';
+	}
 
 	// console.log(file_options);
 

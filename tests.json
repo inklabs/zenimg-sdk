@@ -89,6 +89,18 @@
 	[
 		{
 			"image_code": "6b0",
+			"style": "CG2",
+			"cg_style": "IW",
+			"cg_edge_color": "0f0",
+			"cg_depth": 2,
+			"size": "200X200",
+			"format": "jpg"
+		},
+		"http://i.zenimg.com/v1/6b0_CG2_IW_EC0F0_D2_200X200.jpg"
+	],
+	[
+		{
+			"image_code": "6b0",
 			"style": "AC",
 			"ac_edge_depth": 0,
 			"size": "200X200",
@@ -343,5 +355,47 @@
 			"format": "jpg"
 		},
 		"http://i.zenimg.com/v1/url/CG_200X200.jpg?url=http%3A%2F%2Fimgur.com%2Fgallery%2Fm6fak"
+	],
+	[
+		{
+		},
+		""
+	],
+	[
+		{
+			"image_code": "6b0"
+		},
+		""
+	],
+	[
+		{
+			"image_code": "6b0",
+			"format": "jpg"
+		},
+		""
+	],
+	[
+		{
+			"image_code": "6b0",
+			"size": "300X300",
+			"format": "jpg"
+		},
+		""
+	],
+	[
+		{
+			"image_code": "6b0",
+			"style": "CG",
+			"format": "jpg"
+		},
+		""
+	],
+	[
+		{
+			"image_code": "6b0",
+			"style": "XX",
+			"format": "jpg"
+		},
+		""
 	]
 ]

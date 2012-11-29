@@ -13,7 +13,6 @@ echo -n "PHP:"
 RES=$(php php/test.php)
 check_status
 
-
 echo
 echo -n "Ruby:"
 RES=$(ruby ruby/test.rb)

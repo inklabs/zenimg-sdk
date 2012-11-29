@@ -110,6 +110,9 @@ class Zenimg {
 			if ($ac_edge_depth !== NULL) {
 				$file_options[] = 'ED' . $ac_edge_depth;
 			}
+		} elseif ($style == 'WD') {
+		} else {
+			return '';
 		}
 		
 		if ($frame_code !== NULL) {
@@ -154,6 +157,8 @@ class Zenimg {
 
 		if ($size !== NULL) {
 			$file_options[] = strtoupper($size);
+		} else {
+			return '';
 		}
 		
 		$file_options = implode('_', $file_options) . '.' . $format;
