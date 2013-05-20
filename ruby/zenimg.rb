@@ -57,6 +57,8 @@ class Zenimg
 		al_rounded = params['al_rounded']
 		ac_edge_depth = params['ac_edge_depth']
 		frame_code = params['frame_code']
+		mat_width = params['mat_width']
+		mat_color = params['mat_color']
 		wood_style = params['wood_style']
 		background = params['background']
 		background_texture = params['background_texture']
@@ -73,7 +75,8 @@ class Zenimg
 
 		file_options << style
 
-		if style == 'CG' || style == 'CG2'
+		case style
+		when 'CG', 'CG2'
 			if cg_style == 'IW'
 				file_options << cg_style
 			end
@@ -85,7 +88,19 @@ class Zenimg
 			if cg_depth != nil
 				file_options << 'D' + cg_depth.to_s
 			end
-		elsif style == 'AL'
+		when 'P'
+			if frame_code != nil
+				file_options << 'F' + frame_code.to_s
+			end
+
+			if mat_width != nil
+				file_options << 'MW' + mat_width.to_s
+			end
+
+			if mat_color != nil
+				file_options << 'MC' + mat_color.upcase
+			end
+		when 'AL'
 			if al_edge_depth != nil
 				file_options << 'ED' + al_edge_depth.to_s
 			end
@@ -93,17 +108,13 @@ class Zenimg
 			if al_rounded != nil
 				file_options << 'RD' + al_rounded.to_s
 			end
-		elsif style == 'AC'
+		when 'AC'
 			if ac_edge_depth != nil
 				file_options << 'ED' + ac_edge_depth.to_s
 			end
-		elsif style == 'WD'
+		when 'WD'
 		else
 		  return ''
-		end
-
-		if frame_code != nil
-			file_options << 'F' + frame_code
 		end
 
 		if wood_style != nil

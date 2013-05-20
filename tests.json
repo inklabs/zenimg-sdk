@@ -397,5 +397,111 @@
 			"format": "jpg"
 		},
 		""
+	],
+	[
+		{
+			"image_code": "6b0",
+			"style": "P",
+			"size": "200x200",
+			"format": "jpg"
+		},
+		"http://i.zenimg.com/v1/6b0_P_200X200.jpg"
+	],
+	[
+		{
+			"image_code": "6b0",
+			"style": "P",
+			"frame_code": 15,
+			"size": "200x200",
+			"format": "jpg"
+		},
+		"http://i.zenimg.com/v1/6b0_P_F15_200X200.jpg"
+	],
+	[
+		{
+			"image_code": "6b0",
+			"style": "P",
+			"frame_code": 15,
+			"mat_width": 2,
+			"size": "200x200",
+			"format": "jpg"
+		},
+		"http://i.zenimg.com/v1/6b0_P_F15_MW2_200X200.jpg"
+	],
+	[
+		{
+			"image_code": "6b0",
+			"style": "P",
+			"mat_width": 2,
+			"size": "200x200",
+			"format": "jpg"
+		},
+		"http://i.zenimg.com/v1/6b0_P_MW2_200X200.jpg"
+	],
+	[
+		{
+			"image_code": "6b0",
+			"style": "P",
+			"mat_width": 2.5,
+			"size": "200x200",
+			"format": "jpg"
+		},
+		"http://i.zenimg.com/v1/6b0_P_MW2.5_200X200.jpg"
+	],
+	[
+		{
+			"image_code": "6b0",
+			"style": "P",
+			"mat_width": 2,
+			"mat_color": "ABC",
+			"size": "200x200",
+			"format": "jpg"
+		},
+		"http://i.zenimg.com/v1/6b0_P_MW2_MCABC_200X200.jpg"
+	],
+	[
+		{
+			"image_code": "6b0",
+			"style": "P",
+			"mat_width": 2,
+			"mat_color": "AABBCC",
+			"size": "200x200",
+			"format": "jpg"
+		},
+		"http://i.zenimg.com/v1/6b0_P_MW2_MCAABBCC_200X200.jpg"
+	],
+	[
+		{
+			"image_code": "6b0",
+			"style": "P",
+			"frame_code": 15,
+			"mat_width": 2,
+			"size": "200x200",
+			"format": "jpg"
+		},
+		"http://i.zenimg.com/v1/6b0_P_F15_MW2_200X200.jpg"
+	],
+	[
+		{
+			"image_code": "6b0",
+			"style": "P",
+			"frame_code": 15,
+			"mat_width": 2,
+			"mat_color": "AABBCC",
+			"size": "200x200",
+			"format": "jpg"
+		},
+		"http://i.zenimg.com/v1/6b0_P_F15_MW2_MCAABBCC_200X200.jpg"
+	],
+	[
+		{
+			"image_code": "6b0",
+			"style": "P",
+			"mat_width": 2,
+			"mat_color": "abc",
+			"size": "200x200",
+			"format": "jpg"
+		},
+		"http://i.zenimg.com/v1/6b0_P_MW2_MCABC_200X200.jpg"
 	]
 ]

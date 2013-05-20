@@ -70,6 +70,8 @@ class Zenimg {
 		$al_rounded = Arr::get($params, 'al_rounded');
 		$ac_edge_depth = Arr::get($params, 'ac_edge_depth');
 		$frame_code = Arr::get($params, 'frame_code');
+		$mat_width = Arr::get($params, 'mat_width');
+		$mat_color = Arr::get($params, 'mat_color');
 		$wood_style = Arr::get($params, 'wood_style');
 		$background = Arr::get($params, 'background');
 		$background_texture = Arr::get($params, 'background_texture');
@@ -83,42 +85,70 @@ class Zenimg {
 		$format = Arr::get($params, 'format', 'jpg');
 
 		$file_options = array();
-		
+
 		$file_options[] = $style;
 
-		if ($style == 'CG' OR $style == 'CG2') {
-			if ($cg_style == 'IW') {
-				$file_options[] = $cg_style;
-			}
+		switch ($style) {
+			case 'CG':
+			case 'CG2':
+				if ($cg_style == 'IW') {
+					$file_options[] = $cg_style;
+				}
 
-			if ($cg_edge_color !== NULL) {
-				$file_options[] = 'EC' . strtoupper($cg_edge_color);
-			}
+				if ($cg_edge_color !== NULL) {
+					$file_options[] = 'EC' . strtoupper($cg_edge_color);
+				}
 		
-			if ($cg_depth !== NULL) {
-				$file_options[] = 'D' . $cg_depth;
-			}
-		} elseif ($style == 'AL') {
-			if ($al_edge_depth !== NULL) {
-				$file_options[] = 'ED' . $al_edge_depth;
-			}
+				if ($cg_depth !== NULL) {
+					$file_options[] = 'D' . $cg_depth;
+				}
+			break;
 
-			if ($al_rounded !== NULL) {
-				$file_options[] = 'RD' . $al_rounded;
-			}
-		} elseif ($style == 'AC') {
-			if ($ac_edge_depth !== NULL) {
-				$file_options[] = 'ED' . $ac_edge_depth;
-			}
-		} elseif ($style == 'WD') {
-		} else {
-			return '';
+			case 'CF':
+				if ($frame_code !== NULL) {
+					$file_options[] = 'F' . $frame_code;
+				}
+			break;
+
+			case 'P':
+				if ($frame_code !== NULL) {
+					$file_options[] = 'F' . $frame_code;
+				}
+
+				if ($mat_width !== NULL) {
+					$file_options[] = 'MW' . $mat_width;
+				}
+
+				if ($mat_color !== NULL) {
+					$file_options[] = 'MC' . strtoupper($mat_color);
+				}
+			break;
+
+			case 'AC':
+				if ($ac_edge_depth !== NULL) {
+					$file_options[] = 'ED' . $ac_edge_depth;
+				}
+			break;
+
+			case 'AL':
+				if ($al_edge_depth !== NULL) {
+					$file_options[] = 'ED' . $al_edge_depth;
+				}
+
+				if ($al_rounded !== NULL) {
+					$file_options[] = 'RD' . $al_rounded;
+				}
+			break;
+
+			case 'WD':
+				// No options for Wood
+			break;
+
+			default:
+				return '';
+			break;
 		}
-		
-		if ($frame_code !== NULL) {
-			$file_options[] = 'F' . $frame_code;
-		}
-		
+
 		if ($wood_style !== NULL) {
 			$file_options[] = 'W' . $wood_style;
 		}

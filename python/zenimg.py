@@ -30,6 +30,8 @@ def get_img_url(params):
 	al_rounded = params.get('al_rounded')
 	ac_edge_depth = params.get('ac_edge_depth')
 	frame_code = params.get('frame_code')
+	mat_width = params.get('mat_width')
+	mat_color = params.get('mat_color')
 	wood_style = params.get('wood_style')
 	background = params.get('background')
 	background_texture = params.get('background_texture')
@@ -66,6 +68,16 @@ def get_img_url(params):
 		if al_rounded is not None:
 			file_options.append('RD' + str(al_rounded))
 
+	elif style == 'P':
+		if frame_code is not None:
+			file_options.append('F' + str(frame_code))
+
+		if mat_width is not None:
+			file_options.append('MW' + str(mat_width))
+
+		if mat_color is not None:
+			file_options.append('MC' + mat_color.upper())
+
 	elif style == 'AC':
 		if ac_edge_depth is not None:
 			file_options.append('ED' + str(ac_edge_depth))
@@ -74,9 +86,6 @@ def get_img_url(params):
 		pass
 	else:
 	  return ''
-
-	if frame_code is not None:
-		file_options.append('F' + frame_code)
 
 	if wood_style is not None:
 		file_options.append('W' + wood_style)
