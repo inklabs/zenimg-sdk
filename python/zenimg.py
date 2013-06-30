@@ -1,6 +1,6 @@
 #  Copyright 2012 Ink Labs, LLC
 #
-#  v.1.0.4
+#  v.1.0.5
 # 
 #  Licensed under the Apache License, Version 2.0 (the "License"); you may
 #  not use this file except in compliance with the License. You may obtain
@@ -32,6 +32,8 @@ def get_img_url(params):
 	frame_code = params.get('frame_code')
 	mat_width = params.get('mat_width')
 	mat_color = params.get('mat_color')
+	curl = params.get('curl')
+	curl_width = params.get('curl_width')
 	wood_style = params.get('wood_style')
 	background = params.get('background')
 	background_texture = params.get('background_texture')
@@ -69,14 +71,21 @@ def get_img_url(params):
 			file_options.append('RD' + str(al_rounded))
 
 	elif style == 'P':
-		if frame_code is not None:
-			file_options.append('F' + str(frame_code))
+		if curl is not None:
+			file_options.append('C' + str(curl))
 
-		if mat_width is not None:
-			file_options.append('MW' + str(mat_width))
+			if curl_width is not None:
+				file_options.append('CW' + str(curl_width))
 
-		if mat_color is not None:
-			file_options.append('MC' + mat_color.upper())
+		else:
+			if frame_code is not None:
+				file_options.append('F' + str(frame_code))
+
+			if mat_width is not None:
+				file_options.append('MW' + str(mat_width))
+
+			if mat_color is not None:
+				file_options.append('MC' + mat_color.upper())
 
 	elif style == 'AC':
 		if ac_edge_depth is not None:

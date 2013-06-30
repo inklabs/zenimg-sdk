@@ -3,7 +3,7 @@
 /*
 #  Copyright 2012 Ink Labs, LLC
 #
-#  v.1.0.4
+#  v.1.0.5
 # 
 #  Licensed under the Apache License, Version 2.0 (the "License"); you may
 #  not use this file except in compliance with the License. You may obtain
@@ -72,6 +72,8 @@ class Zenimg {
 		$frame_code = Arr::get($params, 'frame_code');
 		$mat_width = Arr::get($params, 'mat_width');
 		$mat_color = Arr::get($params, 'mat_color');
+		$curl = Arr::get($params, 'curl');
+		$curl_width = Arr::get($params, 'curl_width');
 		$wood_style = Arr::get($params, 'wood_style');
 		$background = Arr::get($params, 'background');
 		$background_texture = Arr::get($params, 'background_texture');
@@ -111,16 +113,24 @@ class Zenimg {
 			break;
 
 			case 'P':
-				if ($frame_code !== NULL) {
-					$file_options[] = 'F' . $frame_code;
-				}
+				if ($curl !== NULL) {
+					$file_options[] = 'C' . $curl;
 
-				if ($mat_width !== NULL) {
-					$file_options[] = 'MW' . $mat_width;
-				}
+					if ($curl_width != NULL) {
+						$file_options[] = 'CW' . $curl_width;
+					}
+				} else {
+					if ($frame_code !== NULL) {
+						$file_options[] = 'F' . $frame_code;
+					}
 
-				if ($mat_color !== NULL) {
-					$file_options[] = 'MC' . strtoupper($mat_color);
+					if ($mat_width !== NULL) {
+						$file_options[] = 'MW' . $mat_width;
+					}
+
+					if ($mat_color !== NULL) {
+						$file_options[] = 'MC' . strtoupper($mat_color);
+					}
 				}
 			break;
 

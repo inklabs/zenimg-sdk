@@ -503,5 +503,67 @@
 			"format": "jpg"
 		},
 		"http://i.zenimg.com/v1/6b0_P_MW2_MCABC_200X200.jpg"
+	],
+	[
+		{
+			"image_code": "6b0",
+			"style": "P",
+			"curl": "SE",
+			"size": "200X200",
+			"format": "jpg"
+		},
+		"http://i.zenimg.com/v1/6b0_P_CSE_200X200.jpg"
+	],
+	[
+		{
+			"image_code": "6b0",
+			"style": "P",
+			"curl": "SW",
+			"size": "200X200",
+			"format": "jpg"
+		},
+		"http://i.zenimg.com/v1/6b0_P_CSW_200X200.jpg"
+	],
+	[
+		{
+			"image_code": "6b0",
+			"style": "P",
+			"curl": "NE",
+			"size": "200X200",
+			"format": "jpg"
+		},
+		"http://i.zenimg.com/v1/6b0_P_CNE_200X200.jpg"
+	],
+	[
+		{
+			"image_code": "6b0",
+			"style": "P",
+			"curl": "NW",
+			"size": "200X200",
+			"format": "jpg"
+		},
+		"http://i.zenimg.com/v1/6b0_P_CNW_200X200.jpg"
+	],
+	[
+		{
+			"image_code": "6b0",
+			"style": "P",
+			"curl": "SE",
+			"curl_width": 2,
+			"size": "200X200",
+			"format": "jpg"
+		},
+		"http://i.zenimg.com/v1/6b0_P_CSE_CW2_200X200.jpg"
+	],
+	[
+		{
+			"image_code": "6b0",
+			"style": "P",
+			"curl": "SE",
+			"curl_width": 2.5,
+			"size": "200X200",
+			"format": "jpg"
+		},
+		"http://i.zenimg.com/v1/6b0_P_CSE_CW2.5_200X200.jpg"
 	]
 ]

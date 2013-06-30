@@ -1,6 +1,6 @@
 #  Copyright 2012 Ink Labs, LLC
 #
-#  v.1.0.4
+#  v.1.0.5
 # 
 #  Licensed under the Apache License, Version 2.0 (the "License"); you may
 #  not use this file except in compliance with the License. You may obtain
@@ -59,6 +59,8 @@ class Zenimg
 		frame_code = params['frame_code']
 		mat_width = params['mat_width']
 		mat_color = params['mat_color']
+		curl = params['curl']
+		curl_width = params['curl_width']
 		wood_style = params['wood_style']
 		background = params['background']
 		background_texture = params['background_texture']
@@ -89,16 +91,24 @@ class Zenimg
 				file_options << 'D' + cg_depth.to_s
 			end
 		when 'P'
-			if frame_code != nil
-				file_options << 'F' + frame_code.to_s
-			end
+			if curl != nil
+				file_options << 'C' + curl.to_s
 
-			if mat_width != nil
-				file_options << 'MW' + mat_width.to_s
-			end
+				if curl_width != nil
+					file_options << 'CW' + curl_width.to_s
+				end
+			else
+				if frame_code != nil
+					file_options << 'F' + frame_code.to_s
+				end
 
-			if mat_color != nil
-				file_options << 'MC' + mat_color.upcase
+				if mat_width != nil
+					file_options << 'MW' + mat_width.to_s
+				end
+
+				if mat_color != nil
+					file_options << 'MC' + mat_color.upcase
+				end
 			end
 		when 'AL'
 			if al_edge_depth != nil
