@@ -3,7 +3,7 @@
 /*
 #  Copyright 2012 Ink Labs, LLC
 #
-#  v.1.0.5
+#  v.1.0.6
 # 
 #  Licensed under the Apache License, Version 2.0 (the "License"); you may
 #  not use this file except in compliance with the License. You may obtain
@@ -75,6 +75,7 @@ class Zenimg {
 		$curl = Arr::get($params, 'curl');
 		$curl_width = Arr::get($params, 'curl_width');
 		$wood_style = Arr::get($params, 'wood_style');
+		$ald_style = Arr::get($params, 'ald_style');
 		$background = Arr::get($params, 'background');
 		$background_texture = Arr::get($params, 'background_texture');
 		$background_texture_color = Arr::get($params, 'background_texture_color');
@@ -152,6 +153,12 @@ class Zenimg {
 
 			case 'WD':
 				// No options for Wood
+			break;
+
+			case 'ALD':
+				if ($ald_style == 1) {
+					$file_options[] = 'S1';
+				}
 			break;
 
 			default:

@@ -565,5 +565,24 @@
 			"format": "jpg"
 		},
 		"http://i.zenimg.com/v1/6b0_P_CSE_CW2.5_200X200.jpg"
+	],
+	[
+		{
+			"image_code": "6b0",
+			"style": "ALD",
+			"size": "200X200",
+			"format": "jpg"
+		},
+		"http://i.zenimg.com/v1/6b0_ALD_200X200.jpg"
+	],
+	[
+		{
+			"image_code": "6b0",
+			"style": "ALD",
+			"ald_style": 1,
+			"size": "200X200",
+			"format": "jpg"
+		},
+		"http://i.zenimg.com/v1/6b0_ALD_S1_200X200.jpg"
 	]
 ]

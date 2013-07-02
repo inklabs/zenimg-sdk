@@ -1,6 +1,6 @@
 #  Copyright 2012 Ink Labs, LLC
 #
-#  v.1.0.5
+#  v.1.0.6
 # 
 #  Licensed under the Apache License, Version 2.0 (the "License"); you may
 #  not use this file except in compliance with the License. You may obtain
@@ -62,6 +62,7 @@ class Zenimg
 		curl = params['curl']
 		curl_width = params['curl_width']
 		wood_style = params['wood_style']
+		ald_style = params['ald_style']
 		background = params['background']
 		background_texture = params['background_texture']
 		background_texture_color = params['background_texture_color']
@@ -123,6 +124,10 @@ class Zenimg
 				file_options << 'ED' + ac_edge_depth.to_s
 			end
 		when 'WD'
+		when 'ALD'
+			if ald_style == 1
+				file_options << 'S' + ald_style.to_s
+			end
 		else
 		  return ''
 		end
