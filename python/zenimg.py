@@ -1,6 +1,6 @@
 #  Copyright 2012 Ink Labs, LLC
 #
-#  v.1.0.6
+#  v.1.0.7
 # 
 #  Licensed under the Apache License, Version 2.0 (the "License"); you may
 #  not use this file except in compliance with the License. You may obtain
@@ -98,6 +98,9 @@ def get_img_url(params):
 	elif style == 'ALD':
 		if ald_style == 1:
 			file_options.append('S' + str(ald_style))
+
+	elif style == 'ACD':
+		pass
 
 	else:
 	  return ''

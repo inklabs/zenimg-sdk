@@ -584,5 +584,14 @@
 			"format": "jpg"
 		},
 		"http://i.zenimg.com/v1/6b0_ALD_S1_200X200.jpg"
+	],
+	[
+		{
+			"image_code": "6b0",
+			"style": "ACD",
+			"size": "200X200",
+			"format": "jpg"
+		},
+		"http://i.zenimg.com/v1/6b0_ACD_200X200.jpg"
 	]
 ]
