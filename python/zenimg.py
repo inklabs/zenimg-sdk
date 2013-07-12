@@ -1,6 +1,6 @@
 #  Copyright 2012 Ink Labs, LLC
 #
-#  v.1.0.7
+#  v.1.0.8
 # 
 #  Licensed under the Apache License, Version 2.0 (the "License"); you may
 #  not use this file except in compliance with the License. You may obtain
@@ -36,6 +36,7 @@ def get_img_url(params):
 	curl_width = params.get('curl_width')
 	wood_style = params.get('wood_style')
 	ald_style = params.get('ald_style')
+	forex_edge_color = params.get('forex_edge_color')
 	background = params.get('background')
 	background_texture = params.get('background_texture')
 	background_texture_color = params.get('background_texture_color')
@@ -101,6 +102,10 @@ def get_img_url(params):
 
 	elif style == 'ACD':
 		pass
+
+	elif style == 'F':
+		if forex_edge_color is not None:
+			file_options.append('EC' + str(forex_edge_color))
 
 	else:
 	  return ''

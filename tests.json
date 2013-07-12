@@ -593,5 +593,25 @@
 			"format": "jpg"
 		},
 		"http://i.zenimg.com/v1/6b0_ACD_200X200.jpg"
+	],
+	[
+		{
+			"image_code": "6b0",
+			"style": "F",
+			"size": "200X200",
+			"format": "jpg"
+		},
+		"http://i.zenimg.com/v1/6b0_F_200X200.jpg"
+	],
+	[
+		{
+			"image_code": "6b0",
+			"style": "F",
+			"forex_edge_color": "FFFFFF",
+			"size": "200X200",
+			"format": "jpg"
+		},
+		"http://i.zenimg.com/v1/6b0_F_ECFFFFFF_200X200.jpg"
 	]
+
 ]

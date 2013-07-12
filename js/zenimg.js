@@ -1,7 +1,7 @@
 /*
 #  Copyright 2012 Ink Labs, LLC
 #
-#  v.1.0.7
+#  v.1.0.8
 # 
 #  Licensed under the Apache License, Version 2.0 (the "License"); you may
 #  not use this file except in compliance with the License. You may obtain
@@ -77,6 +77,11 @@ Zenimg.get_img_url = function(params) {
 			file_options.push('S' + params.ald_style);
 		}
 	} else if (params.style == 'ACD') {
+
+	} else if (params.style == 'F') {
+		if (typeof params.forex_edge_color !== 'undefined') {
+			file_options.push('EC' + params.forex_edge_color);
+		}
 
 	} else {
 		return '';
