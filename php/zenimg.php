@@ -28,8 +28,11 @@ if ( ! class_exists('Arr')) {
 }
 
 class Zenimg {
-	
+
 	public static $render_location = 'http://i.zenimg.com';
+	public static $cache_enabled = FALSE;
+	public static $cache_time = 4294967295;
+	public static $cache_path = '/tmp/';
 	public static $pan_angles = array(
 		0,
 		15,
@@ -241,31 +244,31 @@ class Zenimg {
 	}
 
 	public static function get_img_code($clean_url) {
-		$token = Profiler::start('zenimg', 'get_img_code');
+		if (self::$cache_enabled) {
+			require_once 'simpleCache.php';
 
-		$cache_key = sha1($clean_url);
-		$cache_lifetime = 4294967295;
-		$data = Cache::instance()->get($cache_key);
+			$cache_key = sha1($clean_url);
 
-		if ($data !== NULL) {
-			Profiler::stop($token);
-			return $data;
+			$cache = new SimpleCache();
+			$cache->cache_path = self::$cache_path;
+			$cache->cache_time = self::$cache_time;
+			$data = $cache->get_cache($cache_key);
+
+			if ($data !== FALSE) {
+				return $data;
+			}
 		}
 
 		$image_url = self::$render_location . '/v1/urlc?url=' . $clean_url;
-		$data = Request::factory($image_url)->execute()->body();
+		$data = file_get_contents($image_url);
 
 		if ($data !== '!!') {
-			Cache::instance()->set(
-				$cache_key,
-				$data,
-				$cache_lifetime
-			);
+			if (self::$cache_enabled) {
+				$cache->set_cache($cache_key, $data);
+			}
 		} else {
 			$data = NULL;
 		}
-
-		Profiler::stop($token);
 
 		return $data;
 	}
