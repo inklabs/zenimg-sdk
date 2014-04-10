@@ -13,8 +13,6 @@ $params = array(
 	'format' => 'jpg',
 );
 
-Zenimg::$render_location = 'http://istage.zenimg.com';
-
 echo Zenimg::get_img_url($params) . "\n";
 echo Zenimg::get_img_code($clean_url) . "\n";
 
