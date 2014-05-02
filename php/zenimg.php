@@ -254,7 +254,7 @@ class Zenimg {
 			$cache->cache_time = self::$cache_time;
 			$data = $cache->get_cache($cache_key);
 
-			if ($data !== FALSE) {
+			if ($data !== FALSE AND $data !== '') {
 				return $data;
 			}
 		}
@@ -262,7 +262,7 @@ class Zenimg {
 		$image_url = self::$render_location . '/v1/urlc?url=' . $clean_url;
 		$data = file_get_contents($image_url);
 
-		if ($data !== '!!') {
+		if ($data !== '!!' AND $data !== '') {
 			if (self::$cache_enabled) {
 				$cache->set_cache($cache_key, $data);
 			}
