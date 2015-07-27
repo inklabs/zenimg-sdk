@@ -3,7 +3,7 @@
 /*
 #  Copyright 2012 Ink Labs, LLC
 #
-#  v.1.0.8
+#  v.1.0.9
 # 
 #  Licensed under the Apache License, Version 2.0 (the "License"); you may
 #  not use this file except in compliance with the License. You may obtain
@@ -73,7 +73,9 @@ class Zenimg {
 		$al_rounded = Arr::get($params, 'al_rounded');
 		$ac_edge_depth = Arr::get($params, 'ac_edge_depth');
 		$frame_code = Arr::get($params, 'frame_code');
+        $frame_size = Arr::get($params, 'frame_size');
 		$mat_width = Arr::get($params, 'mat_width');
+        $min_mat_width = Arr::get($params, 'min_mat_width');
 		$mat_color = Arr::get($params, 'mat_color');
 		$curl = Arr::get($params, 'curl');
 		$curl_width = Arr::get($params, 'curl_width');
@@ -84,6 +86,7 @@ class Zenimg {
 		$background_texture = Arr::get($params, 'background_texture');
 		$background_texture_color = Arr::get($params, 'background_texture_color');
 		$shadow = Arr::get($params, 'shadow');
+        $disable_frame_shadow = Arr::get($params, 'disable_frame_shadow');
 		$pan = Arr::get($params, 'pan');
 		$tilt = Arr::get($params, 'tilt');
 		$roll = Arr::get($params, 'roll');
@@ -117,7 +120,29 @@ class Zenimg {
 				}
 			break;
 
-			case 'P':
+            case 'FP':
+                if ($frame_code !== NULL) {
+                    $file_options[] = 'F' . $frame_code;
+                }
+
+                if ($frame_size !== NULL) {
+                    $file_options[] = 'S' . $frame_size;
+                }
+
+                if ($disable_frame_shadow === TRUE) {
+                    $file_options[] = 'NSHD';
+                }
+
+                if ($min_mat_width !== NULL) {
+                    $file_options[] = 'MMW' . $min_mat_width;
+                }
+
+                if ($mat_color !== NULL) {
+                    $file_options[] = 'MC' . strtoupper($mat_color);
+                }
+                break;
+
+            case 'P':
 				if ($curl !== NULL) {
 					$file_options[] = 'C' . $curl;
 

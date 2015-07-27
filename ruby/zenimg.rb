@@ -1,6 +1,6 @@
 #  Copyright 2012 Ink Labs, LLC
 #
-#  v.1.0.8
+#  v.1.0.9
 # 
 #  Licensed under the Apache License, Version 2.0 (the "License"); you may
 #  not use this file except in compliance with the License. You may obtain
@@ -57,7 +57,9 @@ class Zenimg
 		al_rounded = params['al_rounded']
 		ac_edge_depth = params['ac_edge_depth']
 		frame_code = params['frame_code']
+        frame_size = params['frame_size']
 		mat_width = params['mat_width']
+        min_mat_width = params['min_mat_width']
 		mat_color = params['mat_color']
 		curl = params['curl']
 		curl_width = params['curl_width']
@@ -68,6 +70,7 @@ class Zenimg
 		background_texture = params['background_texture']
 		background_texture_color = params['background_texture_color']
 		shadow = params['shadow']
+        disable_frame_shadow = params['disable_frame_shadow']
 		pan = params['pan']
 		tilt = params['tilt']
 		roll = params['roll']
@@ -92,6 +95,26 @@ class Zenimg
 			if cg_depth != nil
 				file_options << 'D' + cg_depth.to_s
 			end
+        when 'FP'
+            if frame_code != nil
+                file_options << 'F' + frame_code.to_s
+            end
+
+            if frame_size != nil
+                file_options << 'S' + frame_size.to_s
+            end
+
+            if disable_frame_shadow == true
+                file_options << 'NSHD'
+            end
+
+            if min_mat_width != nil
+                file_options << 'MMW' + min_mat_width.to_s
+            end
+
+            if mat_color != nil
+                file_options << 'MC' + mat_color.upcase
+            end
 		when 'P'
 			if curl != nil
 				file_options << 'C' + curl.to_s

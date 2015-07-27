@@ -612,6 +612,19 @@
 			"format": "jpg"
 		},
 		"http://i.zenimg.com/v1/6b0_F_ECFFFFFF_200X200.jpg"
+	],
+	[
+		{
+			"image_code": "6b0",
+			"style": "FP",
+			"frame_code": 15,
+			"frame_size": "12X18",
+            "disable_frame_shadow": true,
+            "min_mat_width": 2.5,
+            "mat_color": "ABC",
+			"size": "200x200",
+			"format": "jpg"
+		},
+		"http://i.zenimg.com/v1/6b0_FP_F15_S12X18_NSHD_MMW2.5_MCABC_200X200.jpg"
 	]
-
 ]

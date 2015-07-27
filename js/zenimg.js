@@ -1,7 +1,7 @@
 /*
 #  Copyright 2012 Ink Labs, LLC
 #
-#  v.1.0.8
+#  v.1.0.9
 # 
 #  Licensed under the Apache License, Version 2.0 (the "License"); you may
 #  not use this file except in compliance with the License. You may obtain
@@ -38,6 +38,26 @@ Zenimg.get_img_url = function(params) {
 		if (typeof params.cg_depth !== 'undefined') {
 			file_options.push('D' + params.cg_depth);
 		}
+    } else if (params.style == 'FP') {
+        if (typeof params.frame_code !== 'undefined') {
+            file_options.push('F' + params.frame_code);
+        }
+
+        if (typeof params.frame_size !== 'undefined') {
+            file_options.push('S' + params.frame_size);
+        }
+
+        if (typeof params.disable_frame_shadow !== 'undefined') {
+            file_options.push('NSHD');
+        }
+
+        if (typeof params.min_mat_width !== 'undefined') {
+            file_options.push('MMW' + params.min_mat_width);
+        }
+
+        if (typeof params.mat_color !== 'undefined') {
+            file_options.push('MC' + params.mat_color.toUpperCase());
+        }
 	} else if (params.style == 'P') {
 		if (typeof params.curl !== 'undefined') {
 			file_options.push('C' + params.curl);

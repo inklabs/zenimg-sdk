@@ -1,6 +1,6 @@
 #  Copyright 2012 Ink Labs, LLC
 #
-#  v.1.0.8
+#  v.1.0.9
 # 
 #  Licensed under the Apache License, Version 2.0 (the "License"); you may
 #  not use this file except in compliance with the License. You may obtain
@@ -30,7 +30,9 @@ def get_img_url(params):
 	al_rounded = params.get('al_rounded')
 	ac_edge_depth = params.get('ac_edge_depth')
 	frame_code = params.get('frame_code')
+	frame_size = params.get('frame_size')
 	mat_width = params.get('mat_width')
+	min_mat_width = params.get('min_mat_width')
 	mat_color = params.get('mat_color')
 	curl = params.get('curl')
 	curl_width = params.get('curl_width')
@@ -41,6 +43,7 @@ def get_img_url(params):
 	background_texture = params.get('background_texture')
 	background_texture_color = params.get('background_texture_color')
 	shadow = params.get('shadow')
+	disable_frame_shadow = params.get('disable_frame_shadow')
 	pan = params.get('pan')
 	tilt = params.get('tilt')
 	roll = params.get('roll')
@@ -71,6 +74,22 @@ def get_img_url(params):
 
 		if al_rounded is not None:
 			file_options.append('RD' + str(al_rounded))
+
+	elif style == 'FP':
+		if frame_code is not None:
+			file_options.append('F' + str(frame_code))
+
+		if frame_size is not None:
+			file_options.append('S' + str(frame_size))
+
+		if disable_frame_shadow == True:
+			file_options.append('NSHD')
+
+		if min_mat_width is not None:
+			file_options.append('MMW' + str(min_mat_width))
+
+		if mat_color is not None:
+			file_options.append('MC' + mat_color.upper())
 
 	elif style == 'P':
 		if curl is not None:
