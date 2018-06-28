@@ -1,5 +1,9 @@
 package zenimg
 
+import (
+	"fmt"
+)
+
 type imageBuilder struct {
 	imageServer string
 }
@@ -10,6 +14,6 @@ func NewImageBuilder(imageServer string) *imageBuilder {
 	}
 }
 
-func (t imageBuilder) GetImageUrl(imageCode string, substrate Substrate) string {
-	return t.imageServer + imageCode + `_` + substrate.String()
+func (t imageBuilder) GetImageUrl(imageCode string, image Image) string {
+	return fmt.Sprintf("%s/%s_%s", t.imageServer, imageCode, image.String())
 }
