@@ -1,11 +1,9 @@
 package zenimg
 
-import "strconv"
-
 type poster struct {
 	*base
 	curlDirection string
-	curlWidth     string
+	curlWidth     float64
 }
 
 func NewPoster() *poster {
@@ -34,8 +32,8 @@ func (t *poster) CurlNorthWest() *poster {
 	return t
 }
 
-func (t *poster) CurlWidth(curlWidth int) *poster {
-	t.curlWidth = strconv.Itoa(curlWidth)
+func (t *poster) CurlWidth(curlWidth float64) *poster {
+	t.curlWidth = curlWidth
 	return t
 }
 
@@ -46,8 +44,8 @@ func (t *poster) Options() []string {
 		options = append(options, t.curlDirection)
 	}
 
-	if t.curlWidth != "" {
-		options = append(options, "CW"+t.curlWidth)
+	if t.curlWidth > 0 {
+		options = append(options, "CW"+getUpToTwoDecimal(t.curlWidth))
 	}
 
 	return options

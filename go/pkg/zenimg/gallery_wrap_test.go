@@ -28,4 +28,8 @@ func TestGalleryWrap(t *testing.T) {
 	assertEqual(t, "CG_D3.13_200X200.jpg", zenimg.NewGalleryWrap().
 		Depth(3.1299).
 		String())
+
+	assertEqual(t, "CG_D3_200X200.jpg", zenimg.NewGalleryWrap().
+		Depth(3.0).
+		String())
 }

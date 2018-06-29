@@ -26,8 +26,8 @@ type base struct {
 	backgroundTextureColor string
 	shadow                 string
 	axis                   axis
-	actualWidth            int16
-	actualHeight           int16
+	actualWidth            float64
+	actualHeight           float64
 	width                  int
 	height                 int
 	format                 string
@@ -78,22 +78,14 @@ func (t *base) Roll(i int16) *base {
 	return t
 }
 
-func (t *base) ActualWidth(width int16) *base {
+func (t *base) ActualSize(width float64, height float64) *base {
 	t.actualWidth = width
+	t.actualHeight = height
 	return t
 }
 
-func (t *base) ActualHeight(width int16) *base {
-	t.actualHeight = width
-	return t
-}
-
-func (t *base) Width(width int) *base {
+func (t *base) Size(width int, height int) *base {
 	t.width = width
-	return t
-}
-
-func (t *base) Height(height int) *base {
 	t.height = height
 	return t
 }
@@ -136,10 +128,24 @@ func (t *base) String() string {
 	}
 
 	if t.actualWidth != 0 && t.actualHeight != 0 {
-		pieces = append(pieces, fmt.Sprintf("A%dX%d", t.actualWidth, t.actualHeight))
+		pieces = append(pieces, "A"+formatSize(t.actualWidth, t.actualHeight))
 	}
 
 	pieces = append(pieces, fmt.Sprintf("%dX%d", t.width, t.height))
 
 	return strings.Join(pieces, `_`) + `.` + t.format
+}
+
+func formatSize(width float64, height float64) string {
+	return fmt.Sprintf("%sX%s",
+		getUpToTwoDecimal(width),
+		getUpToTwoDecimal(height),
+	)
+}
+
+func getUpToTwoDecimal(val float64) string {
+	return strings.TrimRight(
+		strings.TrimRight(fmt.Sprintf("%.2f", val), "0"),
+		".",
+	)
 }

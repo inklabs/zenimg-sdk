@@ -14,8 +14,8 @@ func TestPoster(t *testing.T) {
 		CurlSouthEast().
 		String())
 
-	assertEqual(t, "PO_CW6_200X200.jpg", zenimg.NewPoster().
-		CurlWidth(6).
+	assertEqual(t, "PO_CW6.3_200X200.jpg", zenimg.NewPoster().
+		CurlWidth(6.3).
 		String())
 
 	assertEqual(t, "PO_CSW_CW5_SHD_200X200.jpg", zenimg.NewPoster().
@@ -49,8 +49,7 @@ func TestPoster(t *testing.T) {
 		CurlNorthWest().
 		CurlWidth(3).
 		Background(0).
-		Width(500).
-		Height(400).
+		Size(500, 400).
 		FormatPng().
 		String())
 }

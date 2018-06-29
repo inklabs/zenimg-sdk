@@ -56,7 +56,6 @@ func TestWood(t *testing.T) {
 
 	assertEqual(t, "WD_WN_A10X10_200X200.jpg", zenimg.NewWood().
 		Walnut().
-		ActualWidth(10).
-		ActualHeight(10).
+		ActualSize(10, 10).
 		String())
 }

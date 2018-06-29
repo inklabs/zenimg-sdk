@@ -1,10 +1,5 @@
 package zenimg
 
-import (
-	"fmt"
-	"strings"
-)
-
 type galleryWrap struct {
 	*base
 	withImageWrap bool
@@ -43,8 +38,7 @@ func (g *galleryWrap) Options() []string {
 	}
 
 	if g.depth > 0 {
-		stringDepth := fmt.Sprintf("D%.2f", g.depth)
-		options = append(options, strings.TrimRight(stringDepth, "0"))
+		options = append(options, "D"+getUpToTwoDecimal(g.depth))
 	}
 
 	return options
